@@ -88,6 +88,7 @@ class NewCommand extends Command
         $this->task("Configuring the project ", function () use ($name) {
             exec("git remote remove origin");
             exec("rm -rf .git .gitignore");
+            exec("cp .env.example .env");
         });
 
         $this->task("Installing composer dependencies", function () {

@@ -1,24 +1,24 @@
 {
-    "name": "laravel-zero/laravel-zero",
-    "description": "The Laravel Zero Framework.",
+    "name": "laranex/installer",
+    "description": "Laravel Starter Kit installer from https://github.com/laranex",
     "keywords": [
-        "framework",
         "laravel",
-        "laravel zero",
+        "laranex",
         "console",
-        "cli"
+        "laravel starter kit",
+        "laravel lucid"
     ],
     "homepage": "https://laravel-zero.com",
     "type": "project",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/laravel-zero/laravel-zero/issues",
-        "source": "https://github.com/laravel-zero/laravel-zero"
+        "issues": "https://github.com/laranex/installer/issues",
+        "source": "https://github.com/laranex/installer"
     },
     "authors": [
         {
-            "name": "Nuno Maduro",
-            "email": "enunomaduro@gmail.com"
+            "name": "Nay Thu Khant",
+            "email": "naythukhant644@gmail.com"
         }
     ],
     "require": {
