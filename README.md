@@ -8,8 +8,8 @@ composer global require laranex/installer
 
 ## Usage
 ```shell
+laranex help new #get the available options here
 laranex new application
-laranex new application 
 
 #command options
 -c configure the installation
