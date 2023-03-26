@@ -9,5 +9,9 @@ composer global require laranex/installer
 ## Usage
 ```shell
 laranex new application
-laranex new application -c #configure the application
+laranex new application 
+
+#command options
+-c configure the installation
+-f force remove the existing folder if there is a folder with the same name
 ```
