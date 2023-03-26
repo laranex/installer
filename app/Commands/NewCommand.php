@@ -19,7 +19,8 @@ class NewCommand extends Command
     protected $signature = "new
                             {name : The name of the Application (required)}
                             {--c|configure : Configure the application initializing}
-                            {--f|force : Forces install even if the directory already exists}";
+                            {--f|force : Forces install even if the directory already exists}
+                            {--i|ignore : Composer ignore platform reqs}";
 
     /**
      * The console command description.
@@ -33,7 +34,7 @@ class NewCommand extends Command
      *
      * @return void
      */
-    public function handle(): void
+    public function handle() : void
     {
         $name = $this->argument("name");
         if ($this->option("force") && File::exists($name)) {
@@ -54,7 +55,7 @@ class NewCommand extends Command
      *
      * @return void
      */
-    protected function configureRepository(): void
+    protected function configureRepository() : void
     {
         $this->task("Configuring the initializing ", function () {
             $this->chooseBranch();
@@ -68,7 +69,7 @@ class NewCommand extends Command
      *
      * @return void
      */
-    protected function installApplication(): void
+    protected function installApplication() : void
     {
         $name = $this->argument("name");
 
@@ -76,7 +77,7 @@ class NewCommand extends Command
             $process = new Process(["git", "clone", "-b", $this->branch, "--single-branch", $this->repository, $name]);
             $process->run();
 
-            if (!$process->isSuccessful()) {
+            if (! $process->isSuccessful()) {
                 $this->error("> Failed to install the application: " . $process->getErrorOutput());
                 exit(1);
             }
@@ -92,7 +93,11 @@ class NewCommand extends Command
         });
 
         $this->task("Installing composer dependencies", function () {
-            $process = new Process(["composer", "install"], timeout: 300);
+            $commands = ["composer", "install"];
+            if ($this->option("ignore")) {
+                $commands[] = "--ignore-platform-reqs";
+            }
+            $process = new Process($commands, timeout: 300);
             $process->run(function ($_, $buffer) {
                 $this->info($buffer);
             });
@@ -104,12 +109,12 @@ class NewCommand extends Command
      *
      * @return void
      */
-    protected function chooseBranch(): void
+    protected function chooseBranch() : void
     {
         $process = new Process(['git', 'ls-remote', '--heads', $this->repository]);
         $process->run();
 
-        if (!$process->isSuccessful()) {
+        if (! $process->isSuccessful()) {
             $this->error('Failed to get available branches: ' . $process->getErrorOutput());
             exit(1);
         }
@@ -127,7 +132,7 @@ class NewCommand extends Command
      *
      * @return void
      */
-    protected function welcomeUser(): void
+    protected function welcomeUser() : void
     {
         $this->newLine();
         $this->line(" <bg=blue;fg=white> INFO </> Application ready! <options=bold>Build something amazing.</>");
