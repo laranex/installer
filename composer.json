@@ -18,8 +18,16 @@
     "authors": [
         {
             "name": "Nay Thu Khant",
-            "email": "naythukhant644@gmail.com"
+            "email": "naythukhant644@gmail.com",
+            "homepage": "naythukhant.me",
+            "role" : "Developer"
+        },
+        {
+            "name": "Htay Latt Win",
+            "email" : "tunminlatt.web.dev@gmail.com",
+            "role": "Developer"
         }
+
     ],
     "require": {
         "php": "^8.1",
